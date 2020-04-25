@@ -11,3 +11,7 @@ export interface GraphPoint {
   y: number | ExtraInfo | null
   x: string
 } 
+
+export interface GraphExtraPoint extends GraphPoint {
+  extra: ExtraInfo | number
+}
