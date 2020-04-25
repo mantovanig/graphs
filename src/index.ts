@@ -9,19 +9,25 @@ const getPoints = (start_date: string, end_date: string): GraphPoint[] => {
   const { data } = dataJSON;
   if (!data || data.length === 0) return [];
 
-  const res = data
-    .filter(({ slug }) => slug === "aggregation-overall")
-    .reduce((acc, { details }) => {
-      const se = details
-        .filter(({ key }) => key === "score")
-        .reduce((acc2, { series }) => {
-          if (Array.isArray(series)) return [...acc2, ...series];
-          return acc2;
-        }, [])
+  const res: GraphPoint[] = [];
 
-      return [...acc, ...se];
-    }, [])
-    .filter(({ x }) => moment(x).isBetween(start_date, end_date, null, "[]"));
+  data
+    .filter(({ slug }) => slug === "aggregation-overall")
+    .forEach((el) => {
+      el.details
+        .filter(({ key }) => key === "score")
+        .forEach(({ series }) => {
+          if (Array.isArray(series)) {
+            for (let i = 0; i < series.length; i++) {
+              const isMatch = moment(series[i].x).isBetween(start_date, end_date, "milliseconds", "[]");
+
+              if (isMatch) {
+                res.push(series[i]);
+              }
+            }
+          }
+        });
+    });
 
   return res;
 };
