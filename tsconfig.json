@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "module": "commonjs",
     "target": "es2017",
     "noImplicitAny": false,
     "outDir": "./dist",
     "sourceMap": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true
   },
   "types": ["mocha"],
