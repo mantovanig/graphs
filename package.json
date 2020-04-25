@@ -1,0 +1,15 @@
+{
+  "name": "graphs",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/mantovanig/graphs.git",
+  "author": "mantovanig <gabriele.mantovani92@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}
