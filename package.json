@@ -6,10 +6,25 @@
   "author": "mantovanig <gabriele.mantovani92@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run build && node ./dist/index.js",
+    "build": "npm run lint && node_modules/typescript/bin/tsc",
+    "watch": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node' ./src/index.ts",
+    "lint": "node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json",
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^25.4.0"
-  }
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.2",
+    "babel-jest": "^25.4.0",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.0",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {}
 }
