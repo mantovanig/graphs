@@ -17,6 +17,60 @@ test("sample test", () => {
   expect(res).toEqual(expectedResult);
 });
 
+test("middle period", () => {
+  const res = getPoints("2017-01-17T13:25:44.678229Z", "2017-01-17T13:30:14.085793Z");
+
+  const expectedResult = [
+    {
+      y: 58,
+      x: "2017-01-17T13:25:44.678229Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:27:26.587358Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:28:00.839484Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:30:14.044621Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:30:14.085793Z",
+    },
+  ];
+
+  expect(res).toEqual(expectedResult);
+});
+
+test("start_date not in the series", () => {
+  const res = getPoints("2017-01-17T13:26:44.678229Z", "2017-01-17T13:30:14.085793Z");
+
+  const expectedResult = [
+    {
+      y: 58,
+      x: "2017-01-17T13:27:26.587358Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:28:00.839484Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:30:14.044621Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:30:14.085793Z",
+    },
+  ];
+
+  expect(res).toEqual(expectedResult);
+});
+
 test("equals date", () => {
   const res = getPoints("2015-08-19T14:00:19.352000Z", "2015-08-19T14:00:19.352000Z");
 
