@@ -71,6 +71,23 @@ test("start_date not in the series", () => {
   expect(res).toEqual(expectedResult);
 });
 
+test("start_date and end_date not in the series", () => {
+  const res = getPoints("2017-01-17T13:26:44.678229Z", "2017-01-17T13:29:14.085793Z");
+
+  const expectedResult = [
+    {
+      y: 58,
+      x: "2017-01-17T13:27:26.587358Z",
+    },
+    {
+      y: 58,
+      x: "2017-01-17T13:28:00.839484Z",
+    }
+  ];
+
+  expect(res).toEqual(expectedResult);
+});
+
 test("equals date", () => {
   const res = getPoints("2015-08-19T14:00:19.352000Z", "2015-08-19T14:00:19.352000Z");
 

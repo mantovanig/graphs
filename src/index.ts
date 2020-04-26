@@ -25,17 +25,25 @@ const searchByDate = (scores: GraphPoint[], date: Date): number => {
   const binarySearch = (data: any[], target: Date, startIndex: number, endIndex: number) => {
     const m = Math.floor((startIndex + endIndex) / 2);
 
-    const middleDate = new Date(data[m].x).getTime();
+    const middleTime = new Date(data[m].x).getTime();
 
-    if (target.getTime() == middleDate) return m;
+    if (target.getTime() == middleTime) return m;
 
     const be = endIndex - 1;
-    if (be === startIndex)
-      return new Date(data[startIndex].x).getTime() > new Date(data[endIndex].x).getTime() ? endIndex : startIndex;
+    if (be === startIndex) {
+      const startIndexTime = new Date(data[startIndex].x).getTime();
+      const endIndexTime = new Date(data[endIndex].x).getTime();
+      const targetTime = target.getTime();
+      const startDiff = startIndexTime - targetTime;
+      const endDiff = endIndexTime - targetTime;
 
-    if (target.getTime() > middleDate) return binarySearch(data, target, m, endIndex);
+      return Math.abs(startDiff) > endDiff ? endIndex : startIndex;
+    }
+      
 
-    if (target.getTime() < middleDate) return binarySearch(data, target, startIndex, m);
+    if (target.getTime() > middleTime) return binarySearch(data, target, m, endIndex);
+
+    if (target.getTime() < middleTime) return binarySearch(data, target, startIndex, m);
   };
 
   return binarySearch(scores, date, 0, scores.length - 1);
@@ -66,12 +74,16 @@ export const getPoints = (start_date: string, end_date: string): GraphPoint[] =>
     // order scores by asc date
     const scoresSorted = sortByDate(scores);
 
-    // search start_date index
+    // search closest start_date index
     const startDateIndex = searchByDate(scoresSorted, startDate);
     if (startDateIndex === -1) return [];
 
+    // search closest end_date index
+    const endDateIndex = searchByDate(scoresSorted, endDate);
+    if (endDateIndex === -1) return [];
+
     // loop until end_date and save scores
-    const slicedScores = scoresSorted.slice(startDateIndex);
+    const slicedScores = scoresSorted.slice(startDateIndex, endDateIndex + 1);
     for (let i = 0; i < slicedScores.length; i++) {
       const isMatch = new Date(slicedScores[i].x).getTime() <= endDate.getTime();
 
