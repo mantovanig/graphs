@@ -21,7 +21,7 @@ const sortByDate = (scores: GraphPoint[]): GraphPoint[] => {
   });
 };
 
-const searchByDate = (scores: GraphPoint[], date: Date): number => {
+const searchByDate = (scores: GraphPoint[], date: Date, startIndex: number = 0): number => {
   const binarySearch = (data: any[], target: Date, startIndex: number, endIndex: number) => {
     const m = Math.floor((startIndex + endIndex) / 2);
 
@@ -45,7 +45,7 @@ const searchByDate = (scores: GraphPoint[], date: Date): number => {
     if (target.getTime() < middleTime) return binarySearch(data, target, startIndex, m);
   };
 
-  return binarySearch(scores, date, 0, scores.length - 1);
+  return binarySearch(scores, date, startIndex, scores.length - 1);
 };
 
 /**
@@ -78,7 +78,7 @@ export const getPoints = (start_date: string, end_date: string): GraphPoint[] =>
     if (startDateIndex === -1) return [];
 
     // search closest end_date index
-    const endDateIndex = searchByDate(scoresSorted, endDate);
+    const endDateIndex = searchByDate(scoresSorted, endDate, startDateIndex);
     if (endDateIndex === -1) return [];
 
     // loop until end_date and save scores

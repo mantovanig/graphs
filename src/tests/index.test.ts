@@ -124,7 +124,8 @@ test("points with extra", () => {
       extra: {
         quiz_session_type: "Study",
         priority: 282,
-        score_delta: undefined,
+        // tslint:disable-next-line
+        score_delta: null,
         quiz_session: 6775,
         quiz_config: 226,
         quiz_config_title: "Platform Reference for AWS",
