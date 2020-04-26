@@ -4,6 +4,14 @@ import { GraphPoint, GraphExtraPoint } from "./types";
 // data
 import dataJSON from "./data/data.json";
 
+
+/**
+ * sortByDate
+ * description: sort array by ASC date
+ *
+ * @param {GraphPoint[]} scores
+ * @returns {GraphPoint[]}
+ */
 const sortByDate = (scores: GraphPoint[]): GraphPoint[] => {
   return scores.sort((a, b) => {
     const aDate = new Date(a.x);
@@ -21,6 +29,16 @@ const sortByDate = (scores: GraphPoint[]): GraphPoint[] => {
   });
 };
 
+
+/**
+ * searchByDate
+ * description: binary search to find the array index of closest target date
+ *
+ * @param {GraphPoint[]} scores
+ * @param {Date} date
+ * @param {number} [startIndex=0]
+ * @returns {number}
+ */
 const searchByDate = (scores: GraphPoint[], date: Date, startIndex: number = 0): number => {
   const binarySearch = (data: any[], target: Date, startIndex: number, endIndex: number) => {
     const m = Math.floor((startIndex + endIndex) / 2);
@@ -47,6 +65,7 @@ const searchByDate = (scores: GraphPoint[], date: Date, startIndex: number = 0):
 
   return binarySearch(scores, date, startIndex, scores.length - 1);
 };
+
 
 /**
  * getPoints
