@@ -39,7 +39,6 @@ const searchByDate = (scores: GraphPoint[], date: Date): number => {
 
       return Math.abs(startDiff) > endDiff ? endIndex : startIndex;
     }
-      
 
     if (target.getTime() > middleTime) return binarySearch(data, target, m, endIndex);
 

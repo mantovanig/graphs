@@ -124,7 +124,7 @@ test("points with extra", () => {
       extra: {
         quiz_session_type: "Study",
         priority: 282,
-        score_delta: null,
+        score_delta: undefined,
         quiz_session: 6775,
         quiz_config: 226,
         quiz_config_title: "Platform Reference for AWS",
