@@ -15,4 +15,4 @@ Yarn: 1.x
 `src/index.ts` - [getPoints](https://github.com/mantovanig/graphs/blob/master/src/index.ts#L78)
 
 ## Function n. 2
-`src/index.ts` - [getPoints](https://github.com/mantovanig/graphs/blob/master/src/index.ts#L127)
+`src/index.ts` - [getPointsExtra](https://github.com/mantovanig/graphs/blob/master/src/index.ts#L127)
