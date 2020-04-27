@@ -10,3 +10,9 @@ Yarn: 1.x
 `yarn test` - to run all tests with jest
 
 `yarn build` - to build project
+
+## Function n. 1
+`src/index.ts` - [getPoints](https://github.com/mantovanig/graphs/blob/master/src/index.ts#L78)
+
+## Function n. 2
+`src/index.ts` - [getPoints](https://github.com/mantovanig/graphs/blob/master/src/index.ts#L127)
